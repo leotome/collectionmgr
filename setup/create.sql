@@ -21,7 +21,7 @@ CREATE TABLE recordlabels (
 
 
 CREATE TABLE albums (
-					id 				VARCHAR(32),
+					id 					VARCHAR(32),
 					artist  		VARCHAR(64),
 					album 			VARCHAR(64),
 					relyear 		INT,

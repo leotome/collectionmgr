@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Application name: Collection Manager
  * Author: Leonardo Tomé - leonardo@gmx.pt
  * Version 1.0
