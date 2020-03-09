@@ -41,7 +41,7 @@ require_once 'config/db.php';
 			<td><?php echo htmlentities($result->relyear);?></td>
 			<td><?php echo htmlentities($result->type_name);?> (x<?php echo htmlentities($result->media_amount);?>)</td>
 			<td><?php echo htmlentities($result->label_name);?></td>
-                        <td><a href="tracklist.php?id=<?php echo htmlentities($result->id);?>">View details</a></td>
+                        <td><a href="tracklist.php?id=<?php echo htmlentities($result->id);?>" target="popup" onclick="window.open('tracklist.php?id=<?php echo htmlentities($result->id);?>','popup','width=600,height=600,scrollbars=yes,resizable=no'); return false;">View details</a></td>
 		</tr>
 		<?php
 	}}
