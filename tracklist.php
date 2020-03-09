@@ -1,16 +1,16 @@
 <?php
 require 'config/db.php';
 $id = $_GET['id'];
-	$sql = "SELECT al.artist, al.album, al.relyear, al.media_amount, lb.label_name, tp.type_name FROM albums al JOIN media_type tp ON al.media_type=tp.id_type JOIN recordlabels lb ON al.label=lb.id_label WHERE al.id=".$id.";";
+	$sql = "SELECT al.artist, al.album, al.relyear, al.media_amount, lb.label_name, tp.type_name FROM albums al JOIN media_type tp ON al.media_type=tp.id_type JOIN recordlabels lb ON al.label=lb.id_label WHERE al.id='".$id."';";
 	$query = $dbh->prepare($sql); //Prepare the query:
 	$query->execute();
 	$albuminfo=$query->fetch();
 	//Assign the data which you pulled from the database (in the preceding step) to a variable.
 
-        $checker = "SELECT tk.cd_number, COUNT(tk.id) AS total FROM album_track_list tk WHERE tk.album_id=".$id." GROUP BY tk.cd_number;";
+        $checker = "SELECT tk.cd_number, COUNT(tk.id) AS total FROM album_track_list tk WHERE tk.album_id='".$id."' GROUP BY tk.cd_number;";
         $myQuery = $dbh->prepare($checker); //Prepare the query:
         $myQuery->execute();
-        $trackinfo=$myQuery->fetchAll(PDO::FETCH_CLASS);      
+        $trackinfo=$myQuery->fetchAll(PDO::FETCH_CLASS);
 ?>
 <html>
 <head>
@@ -29,17 +29,17 @@ $id = $_GET['id'];
 	<tr>
 		<td>
 		<b>Album:</b> <?php echo htmlentities($albuminfo["album"]);?>
-		</td>	
+		</td>
 	</tr>
 	<tr>
 		<td>
 		<b>Release Year:</b> <?php echo htmlentities($albuminfo["relyear"]);?>
-		</td>	
+		</td>
 	</tr>
 	<tr>
 		<td>
 		<b>Label:</b> <?php echo htmlentities($albuminfo["label_name"]);?>
-		</td>	
+		</td>
 	</tr>
 	<tr>
 		<td>
@@ -53,7 +53,7 @@ $id = $_GET['id'];
 	</tr>
         <?php
         for($t=1;$t<=$albuminfo["media_amount"];$t++){
-                $tracknames = "SELECT tk.id, tk.track_name FROM album_track_list tk WHERE tk.album_id=".$id." AND tk.cd_number=".$t.";";
+                $tracknames = "SELECT tk.id, tk.track_name FROM album_track_list tk WHERE tk.album_id='".$id."' AND tk.cd_number=".$t.";";
                 $trackQuery = $dbh->prepare($tracknames); //Prepare the query:
                 $trackQuery->execute();
                 $tknames = $trackQuery->fetchAll(PDO::FETCH_CLASS);
